@@ -12,3 +12,4 @@ let p4 = new Pearson('pedro');
 console.log(p2.name)
 console.log(p3.name)
 console.log(p4.name)  
+
