@@ -1,35 +1,34 @@
-class People{
-    constructor(name_c, age_c){
+class People {
+    constructor(name_c, age_c) {
         this.name = name_c
         this.age = age_c
     }
 
-    getName(){
+    getName() {
         return this.name;
     }
-    getAge(){
+    getAge() {
         return this.age;
     }
-    setName(name){
+    setName(name) {
         this.name = name;
     }
-    setAge(age){
+    setAge(age) {
         this.age = age;
     }
-    
-    information(){
-        console.log(`'Name:  ${this.name}`); 
+
+    information() {
+        console.log(`'Name:  ${this.name}`);
         console.log(`Age: + ${this.age}`);
         console.log('------------------------------')
-    } 
+    }
 }
 
 let person = [];
 const btnAdd = document.querySelector('.container-btn-add');
-const totalResult = document.querySelectorAll('.container-result');
+const totalResult = document.querySelector('.container-result');
 
-
-btnAdd.addEventListener('click', function(){
+btnAdd.addEventListener('click', () => {
     const name = document.querySelector('.input-name');
     const age = document.querySelector('.input-age');
     const newPerson = new People(name.value, age.value);
@@ -38,4 +37,14 @@ btnAdd.addEventListener('click', function(){
     age.value = '';
     name.focus();
     console.log(person)
+    addPerson()
 })
+
+const addPerson = () => {
+    totalResult.innerHTML = '';
+    person.forEach((p) => {
+        const div = document.createElement('div');
+        div.innerHTML = `<p>Name: ${p.getName()}</p> <p>\nAge: ${p.getAge()}</p>`;
+        totalResult.appendChild(div);
+    });
+}

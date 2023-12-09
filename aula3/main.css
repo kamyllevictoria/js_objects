@@ -51,9 +51,7 @@ body{
     display: flex;
     justify-content: center;
     margin: auto;
-    width: 100%;
     border-radius: 20px;
-    
 }
 
 .container-submit input{
@@ -72,4 +70,14 @@ body{
 .container-submit input:hover{
     background-color: rgb(253, 208, 216);
     color: black;
+}
+
+.container-result{
+    display: block;
+    margin: 15px;
+    background-color: #ebe6e6;
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+    border-radius: 5px;
 }
