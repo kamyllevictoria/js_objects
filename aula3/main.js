@@ -24,22 +24,32 @@ class People {
     }
 }
 
+//creating variables
 let person = [];
 const btnAdd = document.querySelector('.container-btn-add');
 const totalResult = document.querySelector('.container-result');
 
+
+//adding persons with conditionals
 btnAdd.addEventListener('click', () => {
+
     const name = document.querySelector('.input-name');
     const age = document.querySelector('.input-age');
-    const newPerson = new People(name.value, age.value);
-    person.push(newPerson);
-    name.value = '';
-    age.value = '';
-    name.focus();
-    console.log(person)
-    addPerson()
-})
 
+    if (typeof name.value === 'string' && isNaN(name.value) && !isNaN(age.value) && name.value !== '' && age.value !== '') {
+        const newPerson = new People(name.value, age.value);
+        person.push(newPerson);
+        name.value = '';
+        age.value = '';
+        name.focus();
+        console.log('Test performed');
+        addPerson();
+    } else {
+        alert('ERROR. Enter valid characters in the name and age fields, please!');
+    }
+});
+
+//adding the array in the div
 const addPerson = () => {
     totalResult.innerHTML = '';
     person.forEach((p) => {
@@ -48,3 +58,4 @@ const addPerson = () => {
         totalResult.appendChild(div);
     });
 }
+
