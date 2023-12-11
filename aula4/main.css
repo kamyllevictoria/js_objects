@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+body{
+    background-color: gray;
+    background-image: linear-gradient(to right, rgb(231, 119, 179), rgb(253, 208, 216));
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    display: block;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: #ffffff;
+    width: 400px;
+    min-height: 500px;
+    height: auto;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.26);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.container-text{
+    font-weight: bolder;
+    padding: 15px;
+    font-size: 35px;
+
+}
+.container-form{
+    display: block;
+    padding: 0 15px 15px 15px;
+}
+
+.container-form input{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #ebe6e6;
+    text-decoration: none;
+}
+
+.container-form p{
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.container-submit{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.container-submit input{
+    margin: 15px;
+    height: 30px;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(240, 116, 137);
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.container-submit input:hover{
+    background-color: rgb(253, 208, 216);
+    color: black;
+}
+
+.container-result{
+    display: block;
+    margin: 15px;
+    background-color: #ebe6e6;
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    border-bottom: 5px;
+}
