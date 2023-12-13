@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body{
+    background-color: gainsboro;
+}
+
+.car{
+    width: 200px;
+    height: auto;
+    border: 3px solid deeppink;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.cars{
+    margin: 50px auto;
+    display: block;
+    width: 80%;
+    border: 3px solid white;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(245, 164, 202);
+}
