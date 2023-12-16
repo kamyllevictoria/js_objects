@@ -50,7 +50,7 @@ class Login extends Person{
 }
 
 
-
+/* /^(\d{3})(\d{3})(\d{3})(\d{2})*/
 let people = [];
 
 const addPersonBtn = document.querySelector('.btn-send-info');
@@ -63,18 +63,28 @@ addPersonBtn.addEventListener('click', () =>{
     var emailInput = document.querySelector('.emailInput');
     var passwordInput = document.querySelector('.passwordInput');
 
-    //name verification
 
+    //name verification
     if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
         const newPerson = new Person();
         newPerson.setName(nameInput.value.trim());
         people.push(newPerson);
         nameInput.value = '';
-        console.log('Registered name.');
-    } else {
-        alert('Please enter a valid name without the presence of numbers and null characters.');
-    }
+        alert('Registered name.');
+    } 
+        else {
+            alert('Please enter a valid name without the presence of numbers and null characters.Try again.');
+        }
 
     //cpf verification and regex
-
+    if (typeof cpfInput.value !== 'string' || !/^\d{11}$/.test(cpfInput.value)){
+        alert('Please enter a valid number without the presence of words, null or special characters. Try again.')
+    } 
+        else{
+            const newPerson = new Person();
+            newPerson.setCPF(cpfInput.value);
+            people.push(newPerson);
+            cpfInput.value = '';
+            alert('Registered CPF.');
+        }
 })
