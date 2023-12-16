@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-image: linear-gradient(to right,#72b5e2, #9564bd);
+    background-color: lightgray;
+}
+
+.container{
+    display: block;
+    margin: 150px auto;
+    width: 600px;
+    height: 550px;
+    background: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 4px 5px 5px rgba(0, 0, 0, 0.268);
+}
+
+.fm-tittle{
+    display: block;
+    padding: 20px;
+}
+
+.fm-container-input-text{
+    display: inline-block;
+    padding: 20px;
+    width: 560px;
+}
+
+.fm-container-input{
+    display: inline-block;
+    width: 260px;
+    position: relative;
+    left: 20px;
+    top: -20px;
+
+}
+
+.fm-container-input p{
+    width: 400px;
+    margin: 5px 0 5px 0;
+    font-weight: bold;
+}
+
+.fm-container-input input{
+    width: 250px;
+    box-sizing: border-box;
+    height: 45px;
+    margin: 5px 0 5px 0;
+}
+
+.fm-container-gender-info{
+    display: block;
+    width: 600px;
+    padding:20px;
+}
+
+.fm-container-gender-info h1{
+    font-size: 22px;
+}
+
+.fm-container-gender-info label{
+    margin-right: 110px;
+}
+
+.fm-container-input-text button{
+   width: 560px;
+   background-image: linear-gradient(to right,#72b5e2, #9564bd);
+   height: 45px;
+   color: black;
+}
+
+.fm-container-input-text button:hover{
+    background-image: linear-gradient(to right,#325064, #523767);
+    color: white;
+ }

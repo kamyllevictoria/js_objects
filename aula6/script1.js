@@ -15,3 +15,4 @@ cat.doSound = function(){
 
 console.log(cat.type);
 cat.doSound();
+
