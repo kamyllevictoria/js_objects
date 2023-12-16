@@ -23,7 +23,7 @@ const Person = {
     const nameInput = document.querySelector('.input-name');
     const ageInput = document.querySelector('.input-age');
   
-    if (typeof nameInput.value === 'string' && nameInput.value !== '' && !isNaN(ageInput.value) && ageInput.value !== '') {
+    if (typeof nameInput.value === 'string' || nameInput.value !== '' || !isNaN(ageInput.value) || ageInput.value !== '') {
       const newPerson = Object.create(Person);
       newPerson.setName(nameInput.value);
       newPerson.setAge(ageInput.value);

@@ -14,33 +14,33 @@
         <div class="fm-container-input-text">
             <div class="fm-container-input">
                 <p>Name:</p>
-                <input type="text" name="name" id="name" required placeholder="Enter your name">
+                <input type="text" name="name" id="name" required placeholder="Enter your name" class="nameInput">
                 <p>Day of Birth:</p>
-                <input type="number" name="age" id="age" required placeholder="Enter your age">
+                <input type="number" name="age" id="age" required placeholder="Enter your age" class="ageInput">
                 <p>Phone Number:</p>
-                <input type="number" name="phone" id="phone" required placeholder="Phone number">
+                <input type="number" name="phone" id="phone" required placeholder="Phone number" class="phoneInput">
             </div>
             <div class="fm-container-input">
                 <p>CPF:</p>
-                <input type="number" name="cpf" id="cpf" required placeholder="Enter your cpf">
+                <input type="number" name="cpf" id="cpf" required placeholder="Enter your cpf" class="cpfInput">
                 <p>Email:</p>
-                <input type="email" name="email" id="email" required placeholder="Enter your email">
+                <input type="email" name="email" id="email" required placeholder="Enter your email" class="emailInput">
                 <p>PassWord:</p>
-                <input type="password" name="password" id="password" required placeholder="Enter your password">
+                <input type="password" name="password" id="password" required placeholder="Enter your password" class="passInput">
             </div>
-        <div class="fm-container-gender-info">
-                <h1>Gender:</h1>
-                
-                <input type="checkbox" name="male" id="male"> <label for="male">Male</label>
-                
-                <input type="checkbox" name="female" id="female">
-                <label for="female">Female</label>
-                
-                <input type="checkbox" name="none" id="none"> <label for="none">None</label>
+            <div class="fm-container-gender-info">
+            <h1>Gender:</h1>
+            
+            <input type="radio" name="gender" id="male"> <label for="male">Male</label>
+            
+            <input type="radio" name="gender" id="female">
+            <label for="female">Female</label>
+            
+            <input type="radio" name="gender" id="none"> <label for="none">None</label>
             </div>
-            <button>ENTER</button>
+            <button class="btn-send-info">ENTER</button>
         </div>
-        
+        <div class="fm-container-result"></div>
     </div>
 
     <script src="main.js"></script>
