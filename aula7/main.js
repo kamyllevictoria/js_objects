@@ -42,10 +42,10 @@ class Login extends Person{
         this.password = password;
     }
     getEmail(){
-        this.email = email;
+        return this.email;
     }
     getPassword(){
-        this.password = password;
+        return this.password;
     }
 }
 
@@ -54,16 +54,14 @@ class Login extends Person{
 let people = [];
 
 const addPersonBtn = document.querySelector('.btn-send-info');
+var nameInput = document.querySelector('.nameInput');
+var ageInput = document.querySelector('.ageInput');
+var phoneInput = document.querySelector('.phoneInput');
+var cpfInput = document.querySelector('.cpfInput');
+var emailInput = document.querySelector('.emailInput');
+var passwordInput = document.querySelector('.passwordInput');
 
 addPersonBtn.addEventListener('click', () =>{
-    var nameInput = document.querySelector('.nameInput');
-    var ageInput = document.querySelector('.ageInput');
-    var phoneInput = document.querySelector('.phoneInput');
-    var cpfInput = document.querySelector('.cpfInput');
-    var emailInput = document.querySelector('.emailInput');
-    var passwordInput = document.querySelector('.passwordInput');
-
-
     //name verification
     if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
         const newPerson = new Person();
@@ -73,18 +71,20 @@ addPersonBtn.addEventListener('click', () =>{
         alert('Registered name.');
     } 
         else {
-            alert('Please enter a valid name without the presence of numbers and null characters.Try again.');
+            alert('NAME ERROR. Please enter a valid name without the presence of numbers and null characters.Try again.');
         }
+    
+})
 
-    //cpf verification and regex
-    if (typeof cpfInput.value !== 'string' || !/^\d{11}$/.test(cpfInput.value)){
-        alert('Please enter a valid number without the presence of words, null or special characters. Try again.')
-    } 
-        else{
-            const newPerson = new Person();
-            newPerson.setCPF(cpfInput.value);
-            people.push(newPerson);
-            cpfInput.value = '';
-            alert('Registered CPF.');
+//cpf mask
+cpfInput.addEventListener('keypress', () =>{
+    let cpfLength = cpfInput.value.length
+    if(cpfLength === 3 || cpfLength === 7){
+        cpfInput.value += '.';
+    }
+        else if( cpfLength === 11){
+            cpfInput.value += '-';
         }
 })
+
+
