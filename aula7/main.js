@@ -67,17 +67,11 @@ addPersonBtn.addEventListener('click', () =>{
 
     //name verification
     if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
-        const newPerson = new Person();
-        newPerson.setName(nameInput.value.trim());
-        people.push(newPerson);
-        nameInput.value = '';
-        alert('Registered name.');
+        console.log('Registered name.');
     } 
         else {
             alert('NAME ERROR. Please enter a valid name without the presence of numbers and null characters.Try again.');
         }
-
-
 
     // cpf verification
     var cpfOnlyNumbers = cpfInput.value.replace(/\./g, '').replace(/\-/g, ''); // regex
@@ -89,7 +83,7 @@ addPersonBtn.addEventListener('click', () =>{
             alert('Please fill in all the CPF fields.')
             return;
         }
-            else {
+            else{
                 var cpfTenNumbers = cpfOnlyNumbers.substr(0, 10);
                 var cpfNineNumbers = cpfOnlyNumbers.substr(0, 9);
                 var cpfNineSum = 0;
@@ -117,14 +111,11 @@ addPersonBtn.addEventListener('click', () =>{
                 cpfResultModule2 = cpfResultModule2 === 10 ? 0 : cpfResultModule2; 
 
                 if (cpfResultModule1 === parseInt(cpfOnlyNumbers.substr(9, 1)) && cpfResultModule2 === parseInt(cpfOnlyNumbers.substr(10, 1))) {
-                    const newPerson = new Person();
-                    newPerson.setCPF(cpfInput.value),
-                    people.push(newPerson);
-                    cpfInput.value = '';
-                    alert('Registered CPF');
-                } else {
-                    alert('Invalid CPF');
-                }
+                    console.log('Registered CPF.');
+                } 
+                    else {
+                        console.log('Invalid CPF.');
+                    }
             } 
     
     //phone validation
@@ -134,8 +125,21 @@ addPersonBtn.addEventListener('click', () =>{
         return;
     }
 
+    //email validation
+    const email = emailInput.value.trim();
+    if(validEmail(email)){
+        console.log('email valido')
+    } else{
+        alert('email invalido.')
+    }
+
+
 });
 
+function validEmail(email){
+    const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+    return emailRegex.test(email);
+}
 
 function allDigitsEqual(cpf) {
     const firstDigit = cpf.charAt(0);
@@ -168,3 +172,19 @@ phoneInput.addEventListener('keypress', () =>{
                     phoneInput.value += '-';
                 }
 })
+
+
+
+
+//visualization of created objects and instances
+/*
+    const newPerson = new Person();
+    newPerson.setCPF(cpfInput.value);
+    newPerson.setName(nameInput.value.trim());
+    people.push(newPerson);
+    cpfInput.focus();
+    nameInput.focus();
+    nameInput.value = '';
+    cpfInput.value = '';
+    //console.log(people);
+*/

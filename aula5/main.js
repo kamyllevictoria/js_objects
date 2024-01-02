@@ -34,6 +34,7 @@ const Person = {
       nameInput.focus();
       addPerson();
       console.log('New registration completed!');
+      
     } else {
       console.log('ERROR.Registration not completed!');
       alert('Fill in the form correctly!');
