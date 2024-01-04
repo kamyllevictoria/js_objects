@@ -14,8 +14,8 @@ body{
 .container{
     display: block;
     margin: 150px auto;
-    width: 600px;
-    height: 550px;
+    max-width: 600px;
+    height: auto;
     background: white;
     border-radius: 8px;
     box-sizing: border-box;
@@ -80,3 +80,20 @@ body{
     background-image: linear-gradient(to right,#325064, #523767);
     color: white;
  }
+
+.fm-container-result{
+    display: block;
+    margin: auto;
+    width: 560px;
+    background-color: lightgrey;
+    margin-top: 20px;
+}
+
+.fm-container-result h1{
+    font-size: 25px;
+    padding: 5px;
+    background-color:#a48bb9;
+    color: white;
+    text-align: center;
+    border: 2px solid black;
+}

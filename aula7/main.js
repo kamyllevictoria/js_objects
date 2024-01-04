@@ -75,7 +75,10 @@ addPersonBtn.addEventListener('click', () =>{
 
     // cpf verification
     var cpfOnlyNumbers = cpfInput.value.replace(/\./g, '').replace(/\-/g, ''); // regex
-    if (allDigitsEqual(cpfOnlyNumbers)) {
+    if(cpfOnlyNumbers === ''){
+        alert('Preencha os campos de CPF.')
+    }
+    else if (allDigitsEqual(cpfOnlyNumbers)) {
         alert('Invalid CPF - All digits are equal.');
         return;
     } 
@@ -118,26 +121,45 @@ addPersonBtn.addEventListener('click', () =>{
                     }
             } 
     
-    //phone validation
-    var phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '');
-    if(phoneOnlyNumbers.length < 11 || phoneOnlyNumbers.length === ''){
-        alert('Please fill in all the phone fields.')
-        return;
-    }
 
     //email validation
     const email = emailInput.value.trim();
     if(validEmail(email)){
-        console.log('email valido')
-    } else{
-        alert('email invalido.')
-    }
+        console.log('Valid E-mail.')
+    } 
+        else{
+            console.log('Invalid E-mail.')
+        }
+    
+    //phone validation
 
+    const phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '').replace(/\)/g, '').replace(/\(/g, '')
+    if(phoneOnlyNumbers === ''){
+        alert('campos vazios nao sao aceitos')
+    }
+        else if(!/^\d+$/.test(phoneOnlyNumbers)){
+            alert('informe apenas numeros no campo de telefone')
+        }
+            else if(phoneOnlyNumbers.length < 11){
+                alert('Preencha todos os campos de telefone')
+            }
+
+    //age validation
+    const ageOnlyNumbers = ageInput.value.replace(/\./g, '').replace(/\-/g, '');
+    if(ageOnlyNumbers.length === ''){
+        alert('Please, enter a valid age number.')
+    }
+        else if(!/^\d+$/.test(ageOnlyNumbers)){
+            alert('Only enter numbers in the age field!')
+        }
+        else{
+            console.log('Registered age.')
+        }
 
 });
 
 function validEmail(email){
-    const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
 }
 
@@ -145,6 +167,7 @@ function allDigitsEqual(cpf) {
     const firstDigit = cpf.charAt(0);
     return cpf.split('').every(digit => digit === firstDigit);
 }
+
 
 // cpf mask
 cpfInput.addEventListener('keypress', () => {
