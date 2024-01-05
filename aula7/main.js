@@ -67,7 +67,7 @@ addPersonBtn.addEventListener('click', () =>{
 
     //name verification
     if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
-        console.log('Registered name.');
+        alert('Registered name.');
     } 
         else {
             alert('NAME ERROR. Please enter a valid name without the presence of numbers and null characters.Try again.');
@@ -76,7 +76,7 @@ addPersonBtn.addEventListener('click', () =>{
     // cpf verification
     var cpfOnlyNumbers = cpfInput.value.replace(/\./g, '').replace(/\-/g, ''); // regex
     if(cpfOnlyNumbers === ''){
-        alert('Preencha os campos de CPF.')
+        alert('Fill in the CPF fields.')
     }
     else if (allDigitsEqual(cpfOnlyNumbers)) {
         alert('Invalid CPF - All digits are equal.');
@@ -114,10 +114,10 @@ addPersonBtn.addEventListener('click', () =>{
                 cpfResultModule2 = cpfResultModule2 === 10 ? 0 : cpfResultModule2; 
 
                 if (cpfResultModule1 === parseInt(cpfOnlyNumbers.substr(9, 1)) && cpfResultModule2 === parseInt(cpfOnlyNumbers.substr(10, 1))) {
-                    console.log('Registered CPF.');
+                    alert('Registered CPF.');
                 } 
                     else {
-                        console.log('Invalid CPF.');
+                        alert('Invalid CPF.');
                     }
             } 
     
@@ -125,25 +125,26 @@ addPersonBtn.addEventListener('click', () =>{
     //email validation
     const email = emailInput.value.trim();
     if(validEmail(email)){
-        console.log('Valid E-mail.')
+        alert('Registered E-mail.')
     } 
         else{
-            console.log('Invalid E-mail.')
+            alert('Invalid E-mail.')
         }
     
-    //phone validation
 
-    const phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '').replace(/\)/g, '').replace(/\(/g, '')
-    if(phoneOnlyNumbers === ''){
-        alert('campos vazios nao sao aceitos')
-    }
-        else if(!/^\d+$/.test(phoneOnlyNumbers)){
-            alert('informe apenas numeros no campo de telefone')
-        }
-            else if(phoneOnlyNumbers.length < 11){
-                alert('Preencha todos os campos de telefone')
+    //phone validation
+    const phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '');
+    if (phoneOnlyNumbers.length < 11 || phoneOnlyNumbers === '') {
+        alert('Fill in the phone number fields.');
+    } 
+        else if (!/^\d+$/.test(phoneOnlyNumbers)) {
+            alert('Enter only numbers at phone number field!');
+        } 
+            else {
+                alert('Registered phone number.');
             }
 
+        
     //age validation
     const ageOnlyNumbers = ageInput.value.replace(/\./g, '').replace(/\-/g, '');
     if(ageOnlyNumbers.length === ''){
@@ -152,12 +153,14 @@ addPersonBtn.addEventListener('click', () =>{
         else if(!/^\d+$/.test(ageOnlyNumbers)){
             alert('Only enter numbers in the age field!')
         }
-        else{
-            console.log('Registered age.')
-        }
+            else{
+                alert('Registered age.')
+            }
 
 });
 
+
+//functions
 function validEmail(email){
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -179,23 +182,6 @@ cpfInput.addEventListener('keypress', () => {
     }
 });
 
-//phone mask
-phoneInput.addEventListener('keypress', () =>{
-    let phoneLength = phoneInput.value.length
-    if(phoneLength === 0){
-        phoneInput. value += '(';
-    }
-        else if(phoneLength === 3){
-            phoneInput.value += ')';
-        }
-            else if(phoneLength === 4){
-                phoneInput.value += '';
-            }
-                else if(phoneLength === 9){
-                    phoneInput.value += '-';
-                }
-})
-
 
 
 
@@ -209,5 +195,5 @@ phoneInput.addEventListener('keypress', () =>{
     nameInput.focus();
     nameInput.value = '';
     cpfInput.value = '';
-    //console.log(people);
+    //alert(people);
 */
