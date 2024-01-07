@@ -48,8 +48,14 @@ class Login extends Person{
     getEmail(){
         return this.email;
     }
+    setEmail(email){
+        this.email = email;
+    }
     getPassword(){
         return this.password;
+    }
+    setPassword(password){
+        this.password = password;
     }
 }
 
@@ -63,27 +69,18 @@ var cpfInput = document.querySelector('.cpfInput');
 var emailInput = document.querySelector('.emailInput');
 var passwordInput = document.querySelector('.passwordInput');
 
-addPersonBtn.addEventListener('click', () =>{
 
-    //name verification
-    if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
-        alert('Registered name.');
-    } 
-        else {
-            alert('NAME ERROR. Please enter a valid name without the presence of numbers and null characters.Try again.');
-        }
-
-    // cpf verification
+function validCPF(){
     var cpfOnlyNumbers = cpfInput.value.replace(/\./g, '').replace(/\-/g, ''); // regex
     if(cpfOnlyNumbers === ''){
-        alert('Fill in the CPF fields.')
+        console.log('Fill all the CPF fields.')
     }
     else if (allDigitsEqual(cpfOnlyNumbers)) {
-        alert('Invalid CPF - All digits are equal.');
+        console.log('Invalid CPF. All digits are equal.');
         return;
     } 
         else if(cpfOnlyNumbers.length !== 11){
-            alert('Please fill in all the CPF fields.')
+            console.log('Please fill in all the CPF fields.')
             return;
         }
             else{
@@ -114,56 +111,12 @@ addPersonBtn.addEventListener('click', () =>{
                 cpfResultModule2 = cpfResultModule2 === 10 ? 0 : cpfResultModule2; 
 
                 if (cpfResultModule1 === parseInt(cpfOnlyNumbers.substr(9, 1)) && cpfResultModule2 === parseInt(cpfOnlyNumbers.substr(10, 1))) {
-                    alert('Registered CPF.');
+                    console.log('Registered CPF.');
                 } 
                     else {
-                        alert('Invalid CPF.');
+                        console.log('Invalid CPF.');
                     }
             } 
-    
-
-    //email validation
-    const email = emailInput.value.trim();
-    if(validEmail(email)){
-        alert('Registered E-mail.')
-    } 
-        else{
-            alert('Invalid E-mail.')
-        }
-    
-
-    //phone validation
-    const phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '');
-    if (phoneOnlyNumbers.length < 11 || phoneOnlyNumbers === '') {
-        alert('Fill in the phone number fields.');
-    } 
-        else if (!/^\d+$/.test(phoneOnlyNumbers)) {
-            alert('Enter only numbers at phone number field!');
-        } 
-            else {
-                alert('Registered phone number.');
-            }
-
-        
-    //age validation
-    const ageOnlyNumbers = ageInput.value.replace(/\./g, '').replace(/\-/g, '');
-    if(ageOnlyNumbers.length === ''){
-        alert('Please, enter a valid age number.')
-    }
-        else if(!/^\d+$/.test(ageOnlyNumbers)){
-            alert('Only enter numbers in the age field!')
-        }
-            else{
-                alert('Registered age.')
-            }
-
-});
-
-
-//functions
-function validEmail(email){
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
 }
 
 function allDigitsEqual(cpf) {
@@ -171,6 +124,76 @@ function allDigitsEqual(cpf) {
     return cpf.split('').every(digit => digit === firstDigit);
 }
 
+function validName(){
+    //name verification
+    if (/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nameInput.value.trim()) && nameInput.value.trim() !== '') {
+        console.log('Registered name.');
+    } 
+        else {
+            console.log('Invalid name.');
+        }
+}
+
+function validPhone(){
+    const phoneOnlyNumbers = phoneInput.value.replace(/\./g, '').replace(/\-/g, '');
+    if (phoneOnlyNumbers.length < 11 || phoneOnlyNumbers === '') {
+        console.log('Fill in the phone number fields.');
+    } 
+        else if (!/^\d+$/.test(phoneOnlyNumbers)) {
+            console.log('Enter only numbers at phone number field!');
+        } 
+            else {
+                console.log('Registered phone number.');
+            }
+}
+
+
+function validEmail(email){
+    const emailStr = emailInput.value.trim();
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(emailRegex.test(emailStr)){
+        console.log('Valid Email.')
+    }
+        else{
+            console.log('Invalid Email.')
+        }
+}
+
+function validAge(){
+    const ageOnlyNumbers = ageInput.value.replace(/\./g, '').replace(/\-/g, '');
+    if(ageOnlyNumbers.length === ''){
+        console.log('Please, enter a valid age number.')
+    }
+        else if(!/^\d+$/.test(ageOnlyNumbers)){
+            console.log('Only enter numbers in the age field!')
+        }
+            else{
+                console.log('Registered age.')
+            }
+}
+
+
+addPersonBtn.addEventListener('click', (event) =>{
+    event.preventDefault();
+   validName();
+   validEmail()
+   validCPF();
+   validPhone();
+});
+
+//we are using newLogin because it is a subclass that contains information about the Person masterclass, how it receives inheritance, so we can use it for all instances.
+
+/*// visualization of created objects and instances
+    //visualization of created objects and instances
+    const newLogin = new Login();
+    newLogin.setCPF(cpfInput.value);
+    newLogin.setName(nameInput.value.trim());
+    newLogin.setAge(ageInput.value);
+    newLogin.setPhone(phoneInput.value);
+    newLogin.setEmail(emailInput.value);
+    newLogin.setPassword(passwordValue);
+    people.push(newLogin);
+    console.log(people); */
 
 // cpf mask
 cpfInput.addEventListener('keypress', () => {
@@ -182,18 +205,3 @@ cpfInput.addEventListener('keypress', () => {
     }
 });
 
-
-
-
-//visualization of created objects and instances
-/*
-    const newPerson = new Person();
-    newPerson.setCPF(cpfInput.value);
-    newPerson.setName(nameInput.value.trim());
-    people.push(newPerson);
-    cpfInput.focus();
-    nameInput.focus();
-    nameInput.value = '';
-    cpfInput.value = '';
-    //alert(people);
-*/
