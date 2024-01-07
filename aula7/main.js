@@ -173,12 +173,29 @@ function validAge(){
 }
 
 
+
+function validPassword(passwordInput) {
+    console.log('senha recebida: ', passwordInput)
+    const passwordRegex = /^(?!.*(.).*\1)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+/;
+    ///^(?=.*\d).{5,}$/;
+    const passwordIsValid = passwordRegex.test(passwordInput);
+
+    if (passwordIsValid) {
+        console.log('Registered password.');
+    } 
+        else {
+            console.log('Invalid password.Your password must include a number, an uppercase letter, a lowercase letter and a special character, and must not allow repeated characters.');
+        }
+        return passwordIsValid;
+}
+
 addPersonBtn.addEventListener('click', (event) =>{
     event.preventDefault();
    validName();
    validEmail()
    validCPF();
    validPhone();
+   validPassword(passwordInput.value)
 });
 
 //we are using newLogin because it is a subclass that contains information about the Person masterclass, how it receives inheritance, so we can use it for all instances.
