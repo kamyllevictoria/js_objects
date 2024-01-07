@@ -68,7 +68,7 @@ var phoneInput = document.querySelector('.phoneInput');
 var cpfInput = document.querySelector('.cpfInput');
 var emailInput = document.querySelector('.emailInput');
 var passwordInput = document.querySelector('.passwordInput');
-
+var resultInfo = document.querySelector('.fm-container-result');
 
 function validCPF(){
     var cpfOnlyNumbers = cpfInput.value.replace(/\./g, '').replace(/\-/g, ''); // regex
@@ -152,7 +152,7 @@ function validEmail(email){
     const emailStr = emailInput.value.trim();
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if(emailRegex.test(emailStr)){
-        console.log('Valid Email.')
+        console.log('Valid Email.');
     }
         else{
             console.log('Invalid Email.')
@@ -175,8 +175,8 @@ function validAge(){
 
 
 function validPassword(passwordInput) {
-    console.log('senha recebida: ', passwordInput)
-    const passwordRegex = /^(?!.*(.).*\1)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+/;
+    console.log('Password entered: ', passwordInput)
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+/;
     ///^(?=.*\d).{5,}$/;
     const passwordIsValid = passwordRegex.test(passwordInput);
 
@@ -189,6 +189,22 @@ function validPassword(passwordInput) {
         return passwordIsValid;
 }
 
+function resetForm(){
+    cpfInput.value = '';
+    nameInput.value = '';
+    ageInput.value = '';
+    phoneInput.value = '';
+    emailInput.value = '';
+    passwordInput.value = '';
+
+cpfInput.focus();
+   nameInput.focus();
+   ageInput.focus();
+   phoneInput.focus();
+   emailInput.focus();
+   passwordInput.focus();
+}
+
 addPersonBtn.addEventListener('click', (event) =>{
     event.preventDefault();
    validName();
@@ -196,21 +212,23 @@ addPersonBtn.addEventListener('click', (event) =>{
    validCPF();
    validPhone();
    validPassword(passwordInput.value)
+   
+   //visualization of created objects and instances
+   const newLogin = new Login();
+   newLogin.setCPF(cpfInput.value);
+   newLogin.setName(nameInput.value.trim());
+   newLogin.setAge(ageInput.value);
+   newLogin.setPhone(phoneInput.value);
+   newLogin.setEmail(emailInput.value);
+   newLogin.setPassword(passwordInput.value);
+   people.push(newLogin);
+   console.log(people);
+   addPerson();
+   resetForm();
+
 });
 
 //we are using newLogin because it is a subclass that contains information about the Person masterclass, how it receives inheritance, so we can use it for all instances.
-
-/*// visualization of created objects and instances
-    //visualization of created objects and instances
-    const newLogin = new Login();
-    newLogin.setCPF(cpfInput.value);
-    newLogin.setName(nameInput.value.trim());
-    newLogin.setAge(ageInput.value);
-    newLogin.setPhone(phoneInput.value);
-    newLogin.setEmail(emailInput.value);
-    newLogin.setPassword(passwordValue);
-    people.push(newLogin);
-    console.log(people); */
 
 // cpf mask
 cpfInput.addEventListener('keypress', () => {
@@ -222,3 +240,20 @@ cpfInput.addEventListener('keypress', () => {
     }
 });
 
+
+const addPerson = function() {
+    resultInfo.innerHTML = '';
+    people.forEach((p) => {
+      const div = document.createElement('div');
+      div.style.marginBottom = '10px';
+      div.style.border = '2px solid black';
+      div.style.backgroundColor = 'lightgray';
+      div.innerHTML = `
+      <p>Name: ${p.getName()}</p> 
+      <p>CPF: ${p.getCPF()}</p>
+      <p>Age: ${p.getAge()}</p>
+      <p>Email: ${p.getEmail()}</p>
+      <p>Phone Number: ${p.getPhone()}</p>`;
+      resultInfo.appendChild(div);
+    });
+  };

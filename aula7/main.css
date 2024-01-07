@@ -81,15 +81,14 @@ body{
     color: white;
  }
 
-.fm-container-result{
+.fm-container-result, .fm-result-tittle{
     display: block;
     margin: auto;
     width: 560px;
-    background-color: lightgrey;
     margin-top: 20px;
 }
 
-.fm-container-result h1{
+.fm-result-tittle h1{
     font-size: 25px;
     padding: 5px;
     background-color:#a48bb9;
