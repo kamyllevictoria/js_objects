@@ -17,4 +17,5 @@ const json_string = JSON.stringify(person)
 const json_object = JSON.parse(json_string)
 
 //quando temos uma string e queremos converte-la em um objeto, usamos o metodo parse em JSON.
+console.log(json_string)
 console.log(json_object)
