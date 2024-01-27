@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+body{
+    background-color: beige;
+}
+*{
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+.calculator{
+    display: block;
+    margin: 50px auto;
+    width: 350px;
+    height: 500px;
+    background-color: gray;
+    border-radius: 10px;
+}
+
+.display{
+    width: 90%;
+    height: 110px;
+    background-color: rgb(104, 114, 90);
+    display: block;
+    border-radius: 10px;
+    position: relative;
+    top: 60px;
+    left: 18px;
+    border: 5px solid lightgray;
+
+}
+
+.number_display{
+    margin: 55px 15px 15px 15px;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.keys{
+    display: grid;
+    height: 300px;
+    position: relative;
+    top: 90px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: -5px 5px 5px 5px;
+}
+
+.key{
+    margin: 2px;
+    border: none;
+    color: black;
+    border-radius: 5px;
+}
+
+.key:hover{
+    background-color: rgb(168, 168, 168);
+    color: white;
+}
+
+.sum_btn{
+   grid-auto-rows: 2fr;
+   grid-row: span 2;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.orange:hover{
+    background-color: rgb(160, 105, 3);
+    color: white;
+}
