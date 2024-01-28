@@ -1,55 +1,63 @@
-const numericKeys = document.querySelectorAll('.num');
-const operatorsKeys = document.querySelectorAll('.item-operator');
-const resultItem = document.querySelector('.item-result');  
-const turnOnBtn = document.getElementById('on');
-const clearBtn = document.getElementById('ac');
+const numberBtn = document.querySelectorAll('[data-number]');
+const operatorBtn = document.querySelectorAll('[data-operator]');
+const equalBtn = document.querySelectorAll('[data-equals]');
+const clearBtn = document.querySelector('[data-clear]');
+const onBtn = document.querySelector('[data-on]')
+const previousNumText = document.querySelector('.previous-number');
+const currentNumText = document.querySelector('.current-number');
 
-let signal = false
-
-const display = document.querySelector('.display');
 const maxLength = 17;
 
-function addNumberDisplay(number){
-    if(display.innerHTML.length < maxLength){
-        display.innerHTML += number;
+class Calculator {
+    constructor(previousNumText, currentNumText ){
+        this.previousNumText = previousNumText;
+        this.currentNumText = currentNumText;
+        this.clear() //devemos chamar esse metodo assim que a classe é instanciada para nao termos undefined no nosso display
+    } //armazenar e manipular 
+
+    
+
+    //metodo para clicar em um numero
+    appendNumber(number){
+        if(this.currentOperand.includes('.') && number === '.'){
+            return;
+        } //impedir mais de um ponto
+        this.currentOperand = `${this.currentOperand} ${number.toString()}` 
     }
-        else{
-            alert('Maximum limit 17 characters')
-        }
+
+    //atualizamos os campos da classe, mas não atualizamos os elementos de texto, logo, criamos uma metodo updatedisplay para isso
+    clear(){
+        this.currentOperand = '';
+        this.previousOperand = '';
+        this.operation = undefined;
+    } 
+
+    //metodo para atualizarmos o display
+    updateDisplay(){
+        this.previousNumText.innerText = this.previousOperand;
+        this.currentNumText.innerText = this.currentOperand
+    } 
+
 }
 
-numericKeys.forEach((element) =>{
-    element.addEventListener('click', (evt) => {
-        signal = false;
 
-        if(display.innerHTML == '0'){
-            display.innerHTML = '';
-        }
 
-        addNumberDisplay(evt.target.innerHTML);
+
+
+
+const calculator = new Calculator(
+    previousNumText,
+    currentNumText,
+)
+
+for(const numberButton of numberBtn){
+    numberButton.addEventListener('click', ()=> {
+        calculator.appendNumber(numberButton.innerText);
+        calculator.updateDisplay()
     })
-}) //exibir numeros no display
+}
 
-
-operatorsKeys.forEach((element) => {
-    element.addEventListener('click', (evt) => {
-        if(!signal){
-            signal = true;
-
-            if(display.innerHTML == '0'){
-                display.innerHTML = '';
-            }
-            
-            if(evt.target.innerHTML == 'x'){
-                display.innerHTML += '*';
-            } else{
-                display.innerHTML += evt.target.innerHTML;
-            }
-        }
-    }) 
-})
-
-clearBtn.addEventListener('click', (evt) => {
-    signal = false;
-    display.innerHTML = ""
+clearBtn.addEventListener('click', () => {
+    calculator.clear();
+    calculator.updateDisplay();
 })

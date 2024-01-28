@@ -10,39 +10,40 @@
     <div id="calculator" class="calculator">
 
         <div id="display" class="display-container">
-
-            <div class="info">
-                <div id="time" class="time"></div>
-                <div id="date" class="date"></div>
-            </div>
-            <p class="display"></p>
+            <!--<div class="info">
+                <div id="time" class="time">12:00</div>
+                <div id="date" class="date"> 27/01/2024</div>
+            </div> -->
+            <p class="previous-number">123+</p>
+            <p class="current-number">123</p>
+            
         </div>
 
         <div id="keys" class="keys">
-            <button id="on" class="key orange">ON</button>
-            <button id="ac" class="key orange item-operator">AC</button>
-            <button id="porcent" class="key item-operator">%</button>
-            <button id="div" class="key item-operator">/</button>
+            <button id="on" class="key orange" data-on >ON</button>
+            <button id="ac" class="key orange" data-clear >DEL</button>
+            <button id="porcent" class="key" data-operator>%</button>
+            <button id="div" class="key" data-div>/</button>
 
-            <button id="t7" class="key num">7</button>
-            <button id="t8" class="key num">8</button>
-            <button id="t9" class="key num">9</button>
-            <button id="multi" class="key item-operator">x</button>
+            <button id="t7" class="key" data-number>7</button>
+            <button id="t8" class="key" data-number>8</button>
+            <button id="t9" class="key" data-number>9</button>
+            <button id="multi" class="key" data-operator>x</button>
 
-            <button id="t4" class="key num">4</button>
-            <button id="t5" class="key num">5</button>
-            <button id="t6" class="key num">6</button>
-            <button id="sub" class="key item-operator">-</button>
+            <button id="t4" class="key" data-number>4</button>
+            <button id="t5" class="key" data-number>5</button>
+            <button id="t6" class="key" data-number>6</button>
+            <button id="sub" class="key" data-operator>-</button>
 
-            <button id="t1" class="key num">1</button>
-            <button id="t2" class="key num">2</button>
-            <button id="t3" class="key num">3</button>
-            <button id="sum" class="key sum_btn item-operator">+</button>
+            <button id="t1" class="key" data-number>1</button>
+            <button id="t2" class="key" data-number>2</button>
+            <button id="t3" class="key" data-number>3</button>
+            <button id="sum" class="key sum_btn" data-operator>+</button>
 
 
-            <button id="t0" class="key num">0</button>
-            <button id="point" class="key num">.</button>
-            <button id="equal" class="key item-result">=</button>
+            <button id="t0" class="key" data-number>0</button>
+            <button id="point" class="key" data-number>.</button>
+            <button id="equal" class="key item-result" data-equals>=</button>
 
         </div>
     </div>
