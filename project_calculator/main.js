@@ -15,9 +15,28 @@ class Calculator {
         this.clear() //devemos chamar esse metodo assim que a classe é instanciada para nao termos undefined no nosso display
     } //armazenar e manipular 
 
+    formatDisplayNumber(num){
+        const stringNumber = num.toString();
+        const integerNumber = parseFloat(stringNumber.split('.')[0]);
+        const decimalNumber = stringNumber.split('.')[1];
+        
+        let integerDisplay;
+        if(isNaN(integerNumber)){
+            integerDisplay = ''
+        } else{
+            integerDisplay = integerNumber.toLocaleString('en', {maximumFractionDigits: 0,
+            })
+        }
+        if(decimalNumber != null){
+            return `${integerDisplay}.${decimalNumber}`
+        } else{
+            return integerDisplay;
+        }
+    }
 
     delete(){
-        this.currentNumText = this.currentOperand.toString().slice(0, -1);
+        this.currentOperand = this.currentOperand.toString().slice(0, -1);
+
     }
 
     calculate(){
@@ -62,7 +81,9 @@ class Calculator {
         if(this.previousOperand !== ''){
             this.calculate()
         }
-
+        if(this.currentOperand === ''){
+            return;
+        }
         this.operation = operation;
         this.previousOperand = this.currentOperand; //exibe numero e sinal
         this.currentOperand = '';
@@ -87,7 +108,7 @@ class Calculator {
     //metodo para atualizarmos o display
     updateDisplay(){
         this.previousNumText.innerText = `${this.previousOperand} ${this.operation || ''}`
-        this.currentNumText.innerText = this.currentOperand
+        this.currentNumText.innerText = this.formatDisplayNumber(this.currentOperand);
     } 
 
 }
