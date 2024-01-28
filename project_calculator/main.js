@@ -1,8 +1,8 @@
 const numberBtn = document.querySelectorAll('[data-number]');
 const operationBtn = document.querySelectorAll('[data-operator]');
-const equalBtn = document.querySelectorAll('[data-equals]');
+const equalBtn = document.querySelector('[data-equals]');
 const clearBtn = document.querySelector('[data-clear]');
-const onBtn = document.querySelector('[data-on]')
+const deleteBtn = document.querySelector('[data-delete]')
 const previousNumText = document.querySelector('.previous-number');
 const currentNumText = document.querySelector('.current-number');
 
@@ -15,11 +15,56 @@ class Calculator {
         this.clear() //devemos chamar esse metodo assim que a classe é instanciada para nao termos undefined no nosso display
     } //armazenar e manipular 
 
-    
-    chooseOperation(operation){
-        this.operation = operation;
 
-        this.previousOperand = this.currentOperand;
+    delete(){
+        this.currentNumText = this.currentOperand.toString().slice(0, -1);
+    }
+
+    calculate(){
+        //função para calcular os numeros conforme vamos inserindo-o, transformando-os em numeros float
+        let result;
+    
+        const _previousOperand = parseFloat(this.previousOperand);
+        const _currentOperand = parseFloat(this.currentOperand);
+
+        if(isNaN(_previousOperand) || isNaN(_currentOperand)){
+            return;
+        }
+        //tipos de operações
+        switch(this.operation){
+            case '+':
+                result = _previousOperand + _currentOperand;
+                break;
+            case '-':
+                result = _previousOperand - _currentOperand;
+                break;
+            case 'x':
+                result = _previousOperand * _currentOperand;
+                break;
+            case '/':
+                result = _previousOperand / _currentOperand;
+                break;
+            case '%':
+                result = _currentOperand / 100;
+                break;
+            default:
+                return;
+        }
+
+        this.currentOperand = result;
+        this.operation = undefined;
+        this.previousOperand = '';
+    }
+
+
+
+    chooseOperation(operation){
+        if(this.previousOperand !== ''){
+            this.calculate()
+        }
+
+        this.operation = operation;
+        this.previousOperand = this.currentOperand; //exibe numero e sinal
         this.currentOperand = '';
     }
 
@@ -29,7 +74,6 @@ class Calculator {
             return;
         } //impedir mais de um ponto
         this.currentOperand = `${this.currentOperand}${number.toString()}`
-
 
     }
 
@@ -42,7 +86,7 @@ class Calculator {
 
     //metodo para atualizarmos o display
     updateDisplay(){
-        this.previousNumText.innerText = this.previousOperand;
+        this.previousNumText.innerText = `${this.previousOperand} ${this.operation || ''}`
         this.currentNumText.innerText = this.currentOperand
     } 
 
@@ -60,16 +104,26 @@ for(const numberButton of numberBtn){
         calculator.updateDisplay()
     })
 }
+
 //enviando informações para o previousNumber quando o elemento de operação for clicado
 for(const operationButton of operationBtn){
     operationButton.addEventListener('click', () => {
         calculator.chooseOperation(operationButton.innerText);
         calculator.updateDisplay();
     });
-    
 }
 
 clearBtn.addEventListener('click', () => {
     calculator.clear();
+    calculator.updateDisplay();
+})
+
+equalBtn.addEventListener('click', () => {
+    calculator.calculate();
+    calculator.updateDisplay();
+})
+
+deleteBtn.addEventListener('click', () => {
+    calculator.delete();
     calculator.updateDisplay();
 })

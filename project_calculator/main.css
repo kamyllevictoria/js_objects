@@ -32,6 +32,7 @@ body{
     display: block;
     background-color: rgb(64, 94, 64);
     border: 10px solid gray;
+    border-radius: 10px;
 }
 
 .previous-number{
@@ -81,6 +82,11 @@ body{
 .sum_btn{
    grid-auto-rows: 2fr;
    grid-row: span 2;
+}
+
+.del-btn{
+    grid-column: 2fr;
+    grid-column: span 2;
 }
 
 .orange{
