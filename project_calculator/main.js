@@ -1,5 +1,5 @@
 const numberBtn = document.querySelectorAll('[data-number]');
-const operatorBtn = document.querySelectorAll('[data-operator]');
+const operationBtn = document.querySelectorAll('[data-operator]');
 const equalBtn = document.querySelectorAll('[data-equals]');
 const clearBtn = document.querySelector('[data-clear]');
 const onBtn = document.querySelector('[data-on]')
@@ -16,13 +16,21 @@ class Calculator {
     } //armazenar e manipular 
 
     
+    chooseOperation(operation){
+        this.operation = operation;
+
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
+    }
 
     //metodo para clicar em um numero
     appendNumber(number){
         if(this.currentOperand.includes('.') && number === '.'){
             return;
         } //impedir mais de um ponto
-        this.currentOperand = `${this.currentOperand} ${number.toString()}` 
+        this.currentOperand = `${this.currentOperand}${number.toString()}`
+
+
     }
 
     //atualizamos os campos da classe, mas não atualizamos os elementos de texto, logo, criamos uma metodo updatedisplay para isso
@@ -41,10 +49,6 @@ class Calculator {
 }
 
 
-
-
-
-
 const calculator = new Calculator(
     previousNumText,
     currentNumText,
@@ -55,6 +59,14 @@ for(const numberButton of numberBtn){
         calculator.appendNumber(numberButton.innerText);
         calculator.updateDisplay()
     })
+}
+//enviando informações para o previousNumber quando o elemento de operação for clicado
+for(const operationButton of operationBtn){
+    operationButton.addEventListener('click', () => {
+        calculator.chooseOperation(operationButton.innerText);
+        calculator.updateDisplay();
+    });
+    
 }
 
 clearBtn.addEventListener('click', () => {
