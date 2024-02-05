@@ -32,13 +32,9 @@ myBtn.addEventListener('click', ()=>{
 
     .then((message) => {
         myNumber.innerHTML = message;
-        myNumber.classList.remove('red');
-        myNumber.classList.add('blue');
     })
     .catch((message) => {
         myNumber.innerHTML = message;
-        myNumber.classList.remove('blue');
-        myNumber.classList.add('red');
     });
 
 })
